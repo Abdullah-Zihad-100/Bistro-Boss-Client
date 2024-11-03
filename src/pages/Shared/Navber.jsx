@@ -3,7 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContaxt } from "../../Provider/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
 import useCarts from "../../Hooks/useCarts";
+import useAdmin from "../../Hooks/useAdmin";
 const Navber = () => {
+  const [isAdmin]=useAdmin();
   const { user, logout } = useContext(AuthContaxt);
   const [carts]=useCarts();
 
@@ -18,9 +20,16 @@ const Navber = () => {
       <NavLink className={"m-2 font-semibold"} to="/contact">
         CONTACT
       </NavLink>
-      <NavLink className={"m-2 font-semibold"} to="dashboard">
-        DASHBOARD
-      </NavLink>
+      {user && isAdmin && (
+        <NavLink className={"m-2 font-semibold"} to="dashboard/admin-home">
+          DASHBOARD
+        </NavLink>
+      )}
+      {user && !isAdmin &&(
+        <NavLink className={"m-2 font-semibold"} to="dashboard/user-home">
+          DASHBOARD
+        </NavLink>
+      )}
       <NavLink className={"m-2 font-semibold"} to="/our-menu">
         OUR MENU
       </NavLink>

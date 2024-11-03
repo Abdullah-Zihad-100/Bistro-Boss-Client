@@ -16,6 +16,8 @@ import ManageItems from "../pages/DashBoard/ManageItems";
 import UpdateItems from "../pages/DashBoard/UpdateItems";
 import Payment from "../pages/DashBoard/Payment";
 import PaymentHistory from "../pages/DashBoard/PaymentHistory";
+import AdminHome from "../pages/DashBoard/AdminHome";
+import UserHome from "../pages/DashBoard/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -61,27 +63,49 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "admin-home",
-        element: <></>,
-      },
-      {
         path: "carts",
-        element: <Carts></Carts>,
+        element: <Carts />,
       },
       {
         path: "payment",
-        element: <Payment />,
+        element: (
+          <PrivetRoute>
+            <Payment />
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "user-home",
+        element: (
+          <PrivetRoute>
+            <UserHome />
+          </PrivetRoute>
+        ),
       },
       {
         path: "payment-hitory",
-        element: <PaymentHistory />,
+        element: (
+          <PrivetRoute>
+            <PaymentHistory />
+          </PrivetRoute>
+        ),
       },
+
       {
         // ------Admin parts------
         path: "users",
         element: (
           <AdminRoute>
             <Users></Users>
+          </AdminRoute>
+        ),
+      },
+
+      {
+        path: "admin-home",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
           </AdminRoute>
         ),
       },
@@ -101,7 +125,9 @@ export const router = createBrowserRouter([
         path: "update-items/:id",
         element: <UpdateItems />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu/${params.id}`),
+          fetch(
+            `https://bistro-boos-server-ten.vercel.app/menu/${params.id}`
+          ),
       },
     ],
   },

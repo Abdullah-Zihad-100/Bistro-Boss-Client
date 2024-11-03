@@ -5,10 +5,12 @@ import { IoMenu } from "react-icons/io5";
 import { MdEmail, MdFoodBank, MdRateReview } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
+import useAuth from "../../Hooks/useAuth";
 
 const DashBoard = () => {
   // const isAdmin=true;
   const [isAdmin]=useAdmin();
+  const {uers}=useAuth();
     return (
       <div className="flex">
         <div className="bg-[#D1A054] w-52 ps-5">
@@ -24,8 +26,9 @@ const DashBoard = () => {
             {isAdmin ? (
               <>
                 <NavLink
-                  className={` ${({ isActive }) =>
-                    isActive ? "text-white font-bold" : ""}`}
+                  to={"admin-home"}
+                  className={({ isActive }) =>
+                    isActive ? "text-white font-bold" : ""}
                 >
                   <div className="flex justify-center items-center gap-2">
                     {" "}
@@ -66,7 +69,8 @@ const DashBoard = () => {
                 <NavLink
                   to="users"
                   className={({ isActive }) =>
-                    isActive ? "text-white font-bold" : ""}
+                    isActive ? "text-white font-bold" : ""
+                  }
                 >
                   <div className="flex justify-center items-center gap-2">
                     {" "}
@@ -78,9 +82,9 @@ const DashBoard = () => {
             ) : (
               <>
                 {" "}
-                <NavLink
-                  className={` ${({ isActive }) =>
-                    isActive ? "text-white font-bold" : ""}`}
+                <NavLink to={"user-home"}
+                  className={({ isActive }) =>
+                    isActive ? "text-white font-bold" : ""}
                 >
                   <div className="flex justify-center items-center gap-2">
                     {" "}

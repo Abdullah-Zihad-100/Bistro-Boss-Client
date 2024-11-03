@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
 
   const googlePrvider = new GoogleAuthProvider();
 
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
@@ -29,19 +30,21 @@ const AuthProvider = ({ children }) => {
           console.log(res);
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
+                  setLoading(false);
           }
         });
       } else {
+        localStorage.removeItem("access-token")
+        setLoading(false);
       }
       setUser(currentUser);
-      setLoading(false);
     });
     return () => unsubscribe();
   }, [axiosPublic]);
 
   //  google login
   const googleLogin = () => {
-    setLoading(false);
+    setLoading(true);
     return signInWithPopup(auth, googlePrvider);
   };
 
