@@ -18,11 +18,14 @@ import Payment from "../pages/DashBoard/Payment";
 import PaymentHistory from "../pages/DashBoard/PaymentHistory";
 import AdminHome from "../pages/DashBoard/AdminHome";
 import UserHome from "../pages/DashBoard/UserHome";
+import AddReview from "../pages/DashBoard/AddReview";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -61,6 +64,7 @@ export const router = createBrowserRouter([
         <DashBoard />
       </PrivetRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "carts",
@@ -71,6 +75,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <Payment />
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "add-review",
+        element: (
+          <PrivetRoute>
+            <AddReview />
           </PrivetRoute>
         ),
       },
@@ -125,9 +137,7 @@ export const router = createBrowserRouter([
         path: "update-items/:id",
         element: <UpdateItems />,
         loader: ({ params }) =>
-          fetch(
-            `https://bistro-boos-server-ten.vercel.app/menu/${params.id}`
-          ),
+          fetch(`https://bistro-boos-server-ten.vercel.app/menu/${params.id}`),
       },
     ],
   },

@@ -1,6 +1,6 @@
 import SectionTitle from "./SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
-import comma from "../assets/home/semiComma.png"
+import comma from "../assets/home/semiComma.png";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -31,10 +31,11 @@ const Testimonials = () => {
         {reviews?.map((review) => (
           <SwiperSlide key={review?._id}>
             <div className="m-24 text-center">
-              <Rating  className="flex flex-col items-center mx-auto "
+              <Rating
+                className="flex flex-col items-center mx-auto "
                 style={{ maxWidth: 180 }}
                 value={review.rating}
-              readOnly
+                readOnly
               />
               <img src={comma} className="md:w-2/4 w-3/4 mx-auto" alt="" />
               <p>{review?.details}</p>

@@ -6,11 +6,11 @@ import useCarts from "../Hooks/useCarts";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const FoodCard = ({ item }) => {
-  const axiosSecure=useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
-  const [,refetch]=useCarts();
+  const [, refetch] = useCarts();
   const cartItem = {
     menuId: item?._id,
     email: user?.email,
@@ -20,7 +20,7 @@ const FoodCard = ({ item }) => {
   };
   const handleCart = () => {
     if (user && user) {
-      //   fetch("http://localhost:5000/carts", {
+      //   fetch("https://bistro-boos-server-ten.vercel.app/carts", {
 
       //     method: "POST",
       //     headers: {

@@ -123,7 +123,7 @@ const DashBoard = () => {
                     <BsBagCheckFill size={20} /> my Cart
                   </div>
                 </NavLink>
-                <NavLink
+                <NavLink to={"add-review"}
                   className={` ${({ isActive }) =>
                     isActive ? "text-white font-bold" : ""}`}
                 >
@@ -133,7 +133,7 @@ const DashBoard = () => {
                     add review
                   </div>
                 </NavLink>
-                <NavLink
+                <NavLink to={"my-booking"}
                   className={` ${({ isActive }) =>
                     isActive ? "text-white font-bold" : ""}`}
                 >

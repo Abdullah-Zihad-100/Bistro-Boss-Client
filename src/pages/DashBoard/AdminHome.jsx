@@ -137,6 +137,9 @@ const TriangleBar = (props) => {
         </div>
       </div>
 
+
+      
+
       <div className="lg:flex flex-row gap-10 mt-20 items-center">
 
         <div className=" mx-auto m-1 w-full flex-1">
